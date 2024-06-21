@@ -12,9 +12,14 @@ function createGrid(number) {
     document.querySelector(".grid-dimensions").textContent = `${number}x${number}`;
 }
 
+function changeColor(event){
+    event.target.style.backgroundColor = "black";
+}
 
 let gridNumber = 16;
 createGrid(gridNumber);
+let gridBoxList = document.querySelectorAll(".grid-box");
+gridBoxList.forEach(gridBox => {gridBox.addEventListener("mouseover", changeColor)});
 
 
 })(document, window)
