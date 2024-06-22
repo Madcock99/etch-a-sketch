@@ -12,12 +12,22 @@ function createGrid(number) {
     document.querySelector(".grid-dimensions").textContent = `${number}x${number}`;
 }
 
+function randomBgColor() {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    return "rgb(" + x + "," + y + "," + z + ")";
+
+}
+
+const randomColor = randomBgColor();
+
 function changeColor(event){
-    event.target.style.backgroundColor = "yellow";
+    event.target.style.backgroundColor = randomColor;
 }
 
 function resetGrid() {
-    let num = prompt("Enter a number below 100 for the grid size:");
+    let num = prompt("Enter a number below 100 for the grid size:", "16");
     if (num === undefined || num === null || num === "") {
         return;
     }
