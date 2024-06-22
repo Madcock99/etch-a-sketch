@@ -13,13 +13,41 @@ function createGrid(number) {
 }
 
 function changeColor(event){
-    event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = "yellow";
+}
+
+function resetGrid() {
+    let num = prompt("Enter a number below 100 for the grid size:");
+    if (num === undefined || num === null || num === "") {
+        return;
+    }
+    while (num > 100){
+        num = prompt("Number is too large.  Must be less than 100:");
+    }
+    const gridContainer = document.querySelector(".grid-container");
+    while (gridContainer.hasChildNodes()) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+    createGrid(num);
+    let gridBoxList = document.querySelectorAll(".grid-box");
+    gridBoxList.forEach(gridBox => {gridBox.addEventListener("mouseover", changeColor)});
+}
+
+function clearGrid() {
+    let gridBoxList = document.querySelectorAll(".grid-box");
+    gridBoxList.forEach(gridBox => {gridBox.style.backgroundColor = null});
 }
 
 let gridNumber = 16;
 createGrid(gridNumber);
 let gridBoxList = document.querySelectorAll(".grid-box");
 gridBoxList.forEach(gridBox => {gridBox.addEventListener("mouseover", changeColor)});
+
+const clearButton = document.querySelector(".clear-button");
+const resetButton = document.querySelector(".reset-button");
+
+clearButton.addEventListener("click", clearGrid);
+resetButton.addEventListener("click", resetGrid);
 
 
 })(document, window)
